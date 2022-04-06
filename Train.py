@@ -42,5 +42,7 @@ def getImageAndLabels(path):
 print("TRAINING")
 faces, ids = getImageAndLabels(path)
 recognizer.train(faces, np.array(ids))
+if not os.path.exists('model'):
+    os.makedirs('model', exist_ok=False)
 recognizer.write("model/trainer.yml")
 print("{0} faces trained. Existing Program".format(len(np.unique(ids))))
