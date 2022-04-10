@@ -3,23 +3,22 @@ import os
 
 #detector = cv2.CascadeClassifier.load(cv2.data.haarcascades + "haarcascade_frontalface_alt2.xml")
 
+cap = cv2.VideoCapture(0)
+
 face_cascade_name = cv2.data.haarcascades + 'haarcascade_frontalface_alt2.xml'
 face_cascade = cv2.CascadeClassifier()
 if not face_cascade.load(cv2.samples.findFile(face_cascade_name)):
-    print("Error loading xml file")
+    print("Error loading model yml file")
     exit(0)
 
-cap = cv2.VideoCapture(0)
-
+numberOfPhotos = int(input("Number of photos (Must be > 100)"))
 face_id = input("\n Input ID ==>")
-count = 0
-
 if not os.path.exists('dataset/' + face_id):
     os.makedirs('dataset/' + face_id, exist_ok=False)
 else:
     print("ID already exist")
     exit(0)
-
+count = 0
 while True:
     _, image = cap.read()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

@@ -9,7 +9,7 @@ if not face_cascade.load(cv2.samples.findFile(face_cascade_name)):
     print("Error loading xml file")
     exit(0)
 
-names = ["SASA", "IRA"]
+names = ["SAD SASA", "IRA"]
 
 cap = cv2.VideoCapture(0)
 
@@ -18,7 +18,7 @@ while True:
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=5)
 
-    for (x, y , w, h) in faces:
+    for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         id, confidence = recognizer.predict(gray[y: y+h, x:x + w])
         label = ""
