@@ -8,6 +8,13 @@ if not face_cascade.load(cv2.samples.findFile(face_cascade_name)):
 
 cap = cv2.VideoCapture(0)
 
+face_id = input("\n Input ID ==>")
+
+if not os.path.exists("dataset/" + face_id):
+    os.makedirs("dataset/" + face_id, exist_ok=False)
+else:
+    print("ID already exist")
+    exit(0)
 
 while True:
     _, image = cap.read()
@@ -16,6 +23,7 @@ while True:
 
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 0), 2)
+
 
     cv2.imshow("Test", image)
     cv2.waitKey(1)
