@@ -16,6 +16,8 @@ else:
     print("ID already exist")
     exit(0)
 
+count = 0
+
 while True:
     _, image = cap.read()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -23,7 +25,12 @@ while True:
 
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 0), 2)
-
-
-    cv2.imshow("Test", image)
-    cv2.waitKey(1)
+        cv2.imwrite("dataset/" + str(face_id) + "/" + str(count) + ".jpeg",
+                    gray[y:y + h, x:x + w])
+        print(count)
+        count += 1
+    cv2.imshow("Face reg", image)
+    if cv2.waitKey(10) == 27:
+        break
+    elif count >= 100:
+        break
