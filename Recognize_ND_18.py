@@ -4,7 +4,7 @@ cap = cv2.VideoCapture(0)
 
 names = {}
 
-file = open("dataset/name_list.txt", 'r')
+file = open("config/name_list.txt", 'r')
 lines = file.readlines()
 file.close()
 

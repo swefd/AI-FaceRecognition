@@ -15,7 +15,7 @@ else:
 
 face_name = input("Input NAME ===> ")
 
-file = open("dataset/name_list.txt", 'a')
+file = open("config/name_list.txt", 'a')
 file.write(str(face_id) + "=" + face_name + "\n")
 file.close()
 
