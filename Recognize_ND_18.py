@@ -2,7 +2,15 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
-names = ["Sasha", "Ivan"]
+names = {}
+
+file = open("dataset/name_list.txt", 'r')
+lines = file.readlines()
+file.close()
+
+for line in lines:
+    key, value = line.strip().split("=")
+    names[key] = value
 
 face_cascade_name = 'haarcascade_frontalface_alt2.xml'
 face_cascade = cv2.CascadeClassifier(face_cascade_name)
@@ -22,7 +30,7 @@ while True:
         label = ""
 
         if confidence < 50:
-            label = "Name: {0} Confidence {1}%".format(names[id], round(100 - confidence))
+            label = "Name: {0} Confidence {1}%".format(names[str(id)], round(100 - confidence))
         else:
             label = "UNKNOWN"
 
